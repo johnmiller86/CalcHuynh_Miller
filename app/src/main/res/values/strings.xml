@@ -1,6 +1,8 @@
+<!-- John D. Miller String Resources -->
 <resources>
-    <string name="app_name">Calculator</string>
+    <string name="app_name">CalcHuynh_Miller</string>
 
+    <!-- Numbers -->
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -12,9 +14,11 @@
     <string name="nine">9</string>
     <string name="zero">0</string>
 
+    <!-- Operators -->
     <string name="clear">CLEAR</string>
+    <string name="back">BACK</string>
     <string name="divide">/</string>
-    <string name="multiply">x</string>
+    <string name="multiply">*</string>
     <string name="subtract">-</string>
     <string name="add">+</string>
     <string name="equals">=</string>

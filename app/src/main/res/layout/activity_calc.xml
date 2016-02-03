@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- John D. Miller Main Layout File -->
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +13,7 @@
     android:background="@drawable/plastic"
     tools:context="com.twh5257_jdm5908_bw.ist402.calchuynh_miller.CalcActivity">
 
+    <!-- Row 1 -->
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
@@ -29,6 +32,7 @@
             android:textSize="70sp"/>
     </TableRow>
 
+    <!-- Row 2 -->
     <TableRow
         android:paddingTop="20dp"
         android:id="@+id/tableRow2"
@@ -80,6 +84,7 @@
             style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
+    <!-- Row 3 -->
     <TableRow
         android:paddingTop="20dp"
         android:id="@+id/tableRow3"
@@ -131,6 +136,7 @@
             style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
+    <!-- Row 4 -->
     <TableRow
         android:id="@+id/tableRow4"
         android:layout_width="wrap_content"
@@ -182,6 +188,7 @@
             style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
+    <!-- Row 5 -->
     <TableRow
         android:id="@+id/tableRow5"
         android:layout_width="wrap_content"
@@ -208,7 +215,7 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/decimal"
             android:text="@string/decimal"
-            android:onClick="tapBackSpace"
+            android:onClick="tapDecimal"
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
@@ -223,6 +230,7 @@
             style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
+    <!-- Row 6 -->
     <TableRow
         android:id="@+id/tableRow6"
         android:layout_width="wrap_content"
@@ -234,11 +242,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/button_width"
-            android:layout_span="2"
             android:background="@drawable/orange_button"
             android:contentDescription="@string/clear"
             android:text="@string/clear"
             android:onClick="tapClear"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/button_width"
+            android:background="@drawable/orange_button"
+            android:contentDescription="@string/back"
+            android:text="@string/back"
+            android:onClick="tapBackSpace"
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
