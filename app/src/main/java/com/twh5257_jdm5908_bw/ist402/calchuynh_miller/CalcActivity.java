@@ -133,6 +133,25 @@ public class CalcActivity extends AppCompatActivity {
 
     }
 
+    public void tapDecimal(View view) {
+        //declare button variable
+        button = (Button) findViewById(R.id.buttonDec);
+
+        //display on screen
+        String existingString = outputScreen.getText().toString();
+
+        if (cs.isNullOrBlank(existingString)) {
+            ErrorSyntaxMessage();
+            return;
+        }
+        if (!existingString.substring(existingString.length() - 1).equals(".")) {
+            outputScreen.setText(existingString + button.getText().toString());
+        } else {
+            ErrorSyntaxMessage();
+        }
+    }
+
+
     //listener to pressed operators
     public void tapDivide(View view) {
 
