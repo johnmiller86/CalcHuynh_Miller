@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:stretchColumns="0, 1, 2, 3"
+    android:stretchColumns="*"
     android:background="@drawable/plastic"
     tools:context="com.twh5257_jdm5908_bw.ist402.calchuynh_miller.CalcActivity">
 
@@ -41,7 +41,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/seven"
             android:minHeight="@dimen/button_width"
-            android:text="@string/seven"/>
+            android:text="@string/seven"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button2"
@@ -50,7 +51,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/eight"
             android:minHeight="@dimen/button_width"
-            android:text="@string/eight"/>
+            android:text="@string/eight"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button3"
@@ -59,7 +61,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/nine"
             android:minHeight="@dimen/button_width"
-            android:text="@string/nine"/>
+            android:text="@string/nine"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button4"
@@ -68,7 +71,8 @@
             android:background="@drawable/orange_button"
             android:contentDescription="@string/multiply"
             android:minHeight="@dimen/button_width"
-            android:text="@string/multiply"/>
+            android:text="@string/multiply"
+            style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
     <TableRow
@@ -84,7 +88,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/four"
             android:minHeight="@dimen/button_width"
-            android:text="@string/four"/>
+            android:text="@string/four"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button6"
@@ -93,7 +98,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/five"
             android:minHeight="@dimen/button_width"
-            android:text="@string/five"/>
+            android:text="@string/five"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button7"
@@ -102,7 +108,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/six"
             android:minHeight="@dimen/button_width"
-            android:text="@string/six"/>
+            android:text="@string/six"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/butto8"
@@ -111,7 +118,8 @@
             android:background="@drawable/orange_button"
             android:contentDescription="@string/subtract"
             android:minHeight="@dimen/button_width"
-            android:text="@string/subtract"/>
+            android:text="@string/subtract"
+            style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
     <TableRow
@@ -127,7 +135,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/one"
             android:minHeight="@dimen/button_width"
-            android:text="@string/one"/>
+            android:text="@string/one"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button10"
@@ -136,7 +145,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/two"
             android:minHeight="@dimen/button_width"
-            android:text="@string/two"/>
+            android:text="@string/two"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button11"
@@ -145,7 +155,8 @@
             android:background="@drawable/blue_button"
             android:contentDescription="@string/three"
             android:minHeight="@dimen/button_width"
-            android:text="@string/three"/>
+            android:text="@string/three"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button12"
@@ -154,7 +165,8 @@
             android:background="@drawable/orange_button"
             android:contentDescription="@string/add"
             android:minHeight="@dimen/button_width"
-            android:text="@string/add"/>
+            android:text="@string/add"
+            style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
     <TableRow
@@ -171,7 +183,8 @@
             android:layout_span="2"
             android:background="@drawable/blue_button"
             android:contentDescription="@string/zero"
-            android:text="@string/zero"/>
+            android:text="@string/zero"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button14"
@@ -180,7 +193,8 @@
             android:minHeight="@dimen/button_width"
             android:background="@drawable/blue_button"
             android:contentDescription="@string/decimal"
-            android:text="@string/decimal"/>
+            android:text="@string/decimal"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/button15"
@@ -189,7 +203,8 @@
             android:minHeight="@dimen/button_width"
             android:background="@drawable/orange_button"
             android:contentDescription="@string/divide"
-            android:text="@string/divide"/>
+            android:text="@string/divide"
+            style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
     <TableRow
@@ -206,7 +221,8 @@
             android:layout_span="2"
             android:background="@drawable/orange_button"
             android:contentDescription="@string/clear"
-            android:text="@string/clear"/>
+            android:text="@string/clear"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
                 android:id="@+id/button17"
@@ -216,6 +232,7 @@
                 android:layout_span="2"
                 android:background="@drawable/orange_button"
                 android:contentDescription="@string/equals"
-                android:text="@string/equals"/>
+            android:text="@string/equals"
+            style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 </TableLayout>
