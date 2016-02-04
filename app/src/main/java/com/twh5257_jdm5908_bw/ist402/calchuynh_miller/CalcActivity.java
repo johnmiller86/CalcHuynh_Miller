@@ -183,7 +183,9 @@ public class CalcActivity extends AppCompatActivity {
 
         //display on screen
         String existingString = outputScreen.getText().toString();
-        if (!existingString.contains(".") == true) {
+        if (operatorClicked && !existingString.contains(".")) {
+            outputScreen.setText(".");
+        } else if (!operatorClicked && !existingString.contains(".")) {
             outputScreen.setText(existingString + button.getText().toString());
         } else {
             Toast.makeText(this, "Numbers may not contain more than one decimal!!", Toast.LENGTH_SHORT).show();
