@@ -28,6 +28,7 @@
             android:background="@color/light_green"
             android:gravity="end"
             android:singleLine="true"
+            android:scrollHorizontally="true"
             android:hint="@string/zero"
             android:textSize="70sp"/>
     </TableRow>

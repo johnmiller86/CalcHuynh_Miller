@@ -2,11 +2,12 @@ package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CalcActivity extends AppCompatActivity {
 
@@ -14,6 +15,8 @@ public class CalcActivity extends AppCompatActivity {
     private TextView outputScreen;
     private Button button;
 
+    private Double num1 = Double.NaN, num2 = Double.NaN;
+    private String oper = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +33,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button0);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapOne(View view) {
@@ -41,9 +42,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button1);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapTwo(View view) {
@@ -52,9 +51,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button2);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapThree(View view) {
@@ -63,9 +60,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button3);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapFour(View view) {
@@ -74,8 +69,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button4);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapFive(View view) {
@@ -84,9 +78,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button5);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapSix(View view) {
@@ -95,9 +87,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button6);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapSeven(View view) {
@@ -106,9 +96,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button7);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapEight(View view) {
@@ -117,9 +105,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button8);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapNine(View view) {
@@ -128,9 +114,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button9);
 
         //display on screen
-        String existingString = outputScreen.getText().toString();
-        outputScreen.setText(existingString + button.getText().toString());
-
+        outputScreen.setText(outputScreen.getText() + button.getText().toString());
     }
 
     public void tapDecimal(View view) {
@@ -139,15 +123,10 @@ public class CalcActivity extends AppCompatActivity {
 
         //display on screen
         String existingString = outputScreen.getText().toString();
-
-        if (cs.isNullOrBlank(existingString)) {
-            ErrorSyntaxMessage();
-            return;
-        }
-        if (!existingString.substring(existingString.length() - 1).equals(".")) {
+        if (!existingString.contains(".") == true) {
             outputScreen.setText(existingString + button.getText().toString());
         } else {
-            ErrorSyntaxMessage();
+            Toast.makeText(this, "Numbers may not contain more than one decimal!!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -155,86 +134,83 @@ public class CalcActivity extends AppCompatActivity {
     //listener to pressed operators
     public void tapDivide(View view) {
 
-        if (!isValidOperator()) {
-            ErrorSyntaxMessage();
-            //exit method
-            return;
-        }
-
-        //declare existing text on result panel
-        String existingString = outputScreen.getText().toString();
-
-        //declare button variable
         button = (Button) findViewById(R.id.buttonDiv);
-        String buttonText = button.getText().toString();
+        double number = Double.parseDouble(outputScreen.getText().toString());
 
-        //add symbol to result panel text
-        outputScreen.setText(existingString + buttonText);
-
+        if (num1.isNaN()) {
+            oper = button.getText().toString();
+            num1 = number;
+            outputScreen.setText("");
+        } else {
+            num2 = Double.parseDouble(outputScreen.getText().toString());
+            num1 = performOperation(num1, num2, oper);
+            outputScreen.setText(String.valueOf(num1));
+            num2 = Double.NaN;
+            oper = button.getText().toString();
+        }
     }
 
     public void tapMultiply(View view) {
-        if (!isValidOperator()) {
-            ErrorSyntaxMessage();
-            //exit method
-            return;
+
+        button = (Button) findViewById(R.id.buttonDiv);
+        double number = Double.parseDouble(outputScreen.getText().toString());
+
+        if (num1.isNaN()) {
+            oper = button.getText().toString();
+            num1 = number;
+            outputScreen.setText("");
+        } else {
+            num2 = Double.parseDouble(outputScreen.getText().toString());
+            num1 = performOperation(num1, num2, oper);
+            outputScreen.setText(String.valueOf(num1));
+            num2 = Double.NaN;
+            oper = button.getText().toString();
         }
-
-        //declare existing text on result panel
-        String existingString = outputScreen.getText().toString();
-
-        //declare button variable
-        button = (Button) findViewById(R.id.buttonMult);
-        String buttonText = button.getText().toString();
-
-        //add symbol to result panel text
-        outputScreen.setText(existingString + buttonText);
-
     }
 
     public void tapSubtract(View view) {
-        if (!isValidOperator()) {
-            ErrorSyntaxMessage();
-            //exit method
-            return;
+
+        button = (Button) findViewById(R.id.buttonDiv);
+        double number = Double.parseDouble(outputScreen.getText().toString());
+
+        if (num1.isNaN()) {
+            oper = button.getText().toString();
+            num1 = number;
+            outputScreen.setText("");
+        } else {
+            num2 = Double.parseDouble(outputScreen.getText().toString());
+            num1 = performOperation(num1, num2, oper);
+            outputScreen.setText(String.valueOf(num1));
+            num2 = Double.NaN;
+            oper = button.getText().toString();
         }
-        //declare existing text on result panel
-        String existingString = outputScreen.getText().toString();
-
-        //declare button variable
-        button = (Button) findViewById(R.id.buttonSub);
-        String buttonText = button.getText().toString();
-
-        //add symbol to result panel text
-        outputScreen.setText(existingString + buttonText);
-
-
     }
 
     public void tapAdd(View view) {
-        if (!isValidOperator()) {
-            ErrorSyntaxMessage();
-            //exit method
-            return;
+
+        button = (Button) findViewById(R.id.buttonDiv);
+        double number = Double.parseDouble(outputScreen.getText().toString());
+
+        if (num1.isNaN()) {
+            oper = button.getText().toString();
+            num1 = number;
+            outputScreen.setText("");
+        } else {
+            num2 = Double.parseDouble(outputScreen.getText().toString());
+            num1 = performOperation(num1, num2, oper);
+            outputScreen.setText(String.valueOf(num1));
+            num2 = Double.NaN;
+            oper = button.getText().toString();
         }
-        //declare existing text on result panel
-        String existingString = outputScreen.getText().toString();
-
-        //declare button variable
-        button = (Button) findViewById(R.id.buttonAdd);
-        String buttonText = button.getText().toString();
-
-        //add symbol to result panel text
-        outputScreen.setText(existingString + buttonText);
-
-
     }
 
     //click listeners to function buttons
     public void tapClear(View view) {
         outputScreen.setText("");
-        outputScreen.setHint(R.string.zero);
         cs = new CalculationService();
+        num1 = Double.NaN;
+        num2 = Double.NaN;
+        oper = "";
     }
 
     public void tapBackSpace(View view) {
@@ -246,39 +222,17 @@ public class CalcActivity extends AppCompatActivity {
     }
 
     public void tapEnter(View view) {
-        String finalResults = outputScreen.getText().toString();
-        if (cs.IsValid(finalResults)) {
-            double result = cs.CalculationHandler(finalResults);
-            outputScreen.setText(String.valueOf(result));
+
+        if (!num1.isNaN() && !oper.equals("")) {
+            num2 = Double.parseDouble(outputScreen.getText().toString());
+            num1 = performOperation(num1, num2, oper);
+            outputScreen.setText(String.valueOf(num1));
+            num1 = Double.NaN;
+            num2 = Double.NaN;
+            oper = "";
         } else {
-            ErrorSyntaxMessage();
+            Toast.makeText(this, "You have not entered a valid expression", Toast.LENGTH_SHORT);
         }
-
-    }
-
-    //method to check if number is the first inputted number
-    public boolean isFirstInputNumber() {
-        boolean isFirstNum = true;
-        outputScreen = (TextView) findViewById(R.id.textView1);
-        String resultText = outputScreen.getText().toString();
-        //if result textview contains any of the operators, the number input is not the first number
-        if (resultText.contains("/") || resultText.contains("*") || resultText.contains("-") || resultText.contains("+")) {
-            isFirstNum = false;
-        }
-
-        return isFirstNum;
-    }
-
-    //method to check if there is a number before any operator symbols
-    private boolean isValidOperator() {
-        boolean isValid = true;
-        outputScreen = (TextView) findViewById(R.id.textView1);
-        String clearedResultScreenText = getResources().getString(R.string.zero);
-
-        if (outputScreen.getText().toString().equals("")) {
-            isValid = false;
-        }
-        return isValid;
     }
 
     //method to display syntax error message to users
@@ -295,16 +249,38 @@ public class CalcActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    //method to determine new number entered
-    public String DetermineNewNumber(String existingResult) {
-        /*
-        existingResult= existingResult.replaceAll("/", "~");
-        existingResult= existingResult.replace("*", "~");
-        existingResult= existingResult.replace("+", "~");
-        existingResult= existingResult.replaceAll("-", "~");
-        String[] array = existingResult.split("~");*/
-        String[] array = existingResult.split("\\D+");
-        int lastElement = array.length;
-        return array[lastElement];
+
+    /**
+     * Checks if there is a pending operation.
+     *
+     * @param num1 the number to be evaluated.
+     * @param oper the operator to be evaluated.
+     * @return true or false.
+     */
+    private Double performOperation(Double num1, Double num2, String oper) {
+
+        Double result = Double.NaN;
+
+        switch (oper) {
+            case "/":
+                if (num2 != 0) {
+                    result = num1 / num2;
+                } else {
+                    Toast.makeText(this, "You cannot divide by zero!!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            default:
+                return 0.0;
+        }
+        return result;
     }
 }

@@ -8,14 +8,14 @@ import java.util.LinkedList;
  * Created by TISA on 2/2/2016.
  */
 public class CalculationService {
-    private int result;
+    private double val;
 
     public CalculationService() {
-        result = 0;
+        val = 0;
     }
 
     public void Set(String stringNumber) {
-        result = Integer.parseInt(stringNumber);
+        val = Integer.parseInt(stringNumber);
     }
 
     public double CalculationHandler(String expression) {
@@ -38,7 +38,7 @@ public class CalculationService {
                     symb.remove(i + 1);
                     symb.remove(i - 1);
                 }
-        double val = Double.parseDouble(symb.get(0));
+        val = Double.parseDouble(symb.get(0));
         if (symb.contains("+") || symb.contains("-"))
             for (int i = 0; i < symb.size(); i++)
                 if (symb.get(i).equals("+"))
