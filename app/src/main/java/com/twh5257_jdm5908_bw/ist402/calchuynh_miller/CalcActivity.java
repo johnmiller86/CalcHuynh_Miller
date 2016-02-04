@@ -1,7 +1,5 @@
 package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,19 +9,22 @@ import android.widget.Toast;
 
 public class CalcActivity extends AppCompatActivity {
 
-    private CalculationService cs;
+    // Instance variables
     private TextView outputScreen;
     private Button button;
+    private Double num1, num2;
+    private String operator;
+    private boolean operatorClicked;
 
-    private Double num1 = Double.NaN, num2 = Double.NaN;
-    private String oper = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
-        cs = new CalculationService();
         outputScreen = (TextView) findViewById(R.id.textView1);
-
+        num1 = Double.NaN;
+        num2 = Double.NaN;
+        operator = "";
+        operatorClicked = false;
     }
 
     //listeners to pressed numbers
@@ -32,8 +33,12 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button0);
 
-        //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        } else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapOne(View view) {
@@ -41,8 +46,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button1);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapTwo(View view) {
@@ -50,8 +61,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button2);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapThree(View view) {
@@ -59,8 +76,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button3);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapFour(View view) {
@@ -68,8 +91,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button4);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapFive(View view) {
@@ -77,8 +106,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button5);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapSix(View view) {
@@ -86,8 +121,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button6);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapSeven(View view) {
@@ -95,8 +136,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button7);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapEight(View view) {
@@ -104,8 +151,14 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button8);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapNine(View view) {
@@ -113,11 +166,18 @@ public class CalcActivity extends AppCompatActivity {
         //declare button variable
         button = (Button) findViewById(R.id.button9);
 
+        if (operatorClicked) {
+            outputScreen.setText(button.getText().toString());
+            operatorClicked = false;
+        }
         //display on screen
-        outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        else {
+            outputScreen.setText(outputScreen.getText() + button.getText().toString());
+        }
     }
 
     public void tapDecimal(View view) {
+
         //declare button variable
         button = (Button) findViewById(R.id.buttonDec);
 
@@ -135,120 +195,129 @@ public class CalcActivity extends AppCompatActivity {
     public void tapDivide(View view) {
 
         button = (Button) findViewById(R.id.buttonDiv);
-        double number = Double.parseDouble(outputScreen.getText().toString());
 
         if (num1.isNaN()) {
-            oper = button.getText().toString();
-            num1 = number;
-            outputScreen.setText("");
+            operator = button.getText().toString();
+            num1 = Double.parseDouble(outputScreen.getText().toString());
+            operatorClicked = true;
+        } else if (operator.equals("=")) {
+            operator = button.getText().toString();
+            operatorClicked = true;
         } else {
             num2 = Double.parseDouble(outputScreen.getText().toString());
-            num1 = performOperation(num1, num2, oper);
+            num1 = performOperation(num1, num2, operator);
             outputScreen.setText(String.valueOf(num1));
             num2 = Double.NaN;
-            oper = button.getText().toString();
+            operator = button.getText().toString();
+            operatorClicked = true;
         }
     }
 
     public void tapMultiply(View view) {
 
-        button = (Button) findViewById(R.id.buttonDiv);
-        double number = Double.parseDouble(outputScreen.getText().toString());
+        button = (Button) findViewById(R.id.buttonMult);
 
         if (num1.isNaN()) {
-            oper = button.getText().toString();
-            num1 = number;
-            outputScreen.setText("");
+            operator = button.getText().toString();
+            num1 = Double.parseDouble(outputScreen.getText().toString());
+            operatorClicked = true;
+        } else if (operator.equals("=")) {
+            operator = button.getText().toString();
+            operatorClicked = true;
         } else {
             num2 = Double.parseDouble(outputScreen.getText().toString());
-            num1 = performOperation(num1, num2, oper);
+            num1 = performOperation(num1, num2, operator);
             outputScreen.setText(String.valueOf(num1));
             num2 = Double.NaN;
-            oper = button.getText().toString();
+            operator = button.getText().toString();
+            operatorClicked = true;
         }
     }
 
     public void tapSubtract(View view) {
 
-        button = (Button) findViewById(R.id.buttonDiv);
-        double number = Double.parseDouble(outputScreen.getText().toString());
+        button = (Button) findViewById(R.id.buttonSub);
 
         if (num1.isNaN()) {
-            oper = button.getText().toString();
-            num1 = number;
+            operator = button.getText().toString();
+            num1 = Double.parseDouble(outputScreen.getText().toString());
             outputScreen.setText("");
+            operatorClicked = true;
+        } else if (operator.equals("=")) {
+            operator = button.getText().toString();
+            operatorClicked = true;
         } else {
             num2 = Double.parseDouble(outputScreen.getText().toString());
-            num1 = performOperation(num1, num2, oper);
+            num1 = performOperation(num1, num2, operator);
             outputScreen.setText(String.valueOf(num1));
             num2 = Double.NaN;
-            oper = button.getText().toString();
+            operator = button.getText().toString();
+            operatorClicked = true;
         }
     }
 
     public void tapAdd(View view) {
 
-        button = (Button) findViewById(R.id.buttonDiv);
-        double number = Double.parseDouble(outputScreen.getText().toString());
+        button = (Button) findViewById(R.id.buttonAdd);
 
         if (num1.isNaN()) {
-            oper = button.getText().toString();
-            num1 = number;
-            outputScreen.setText("");
+            operator = button.getText().toString();
+            num1 = Double.parseDouble(outputScreen.getText().toString());
+            operatorClicked = true;
+        } else if (operator.equals("=")) {
+            operator = button.getText().toString();
+            operatorClicked = true;
         } else {
             num2 = Double.parseDouble(outputScreen.getText().toString());
-            num1 = performOperation(num1, num2, oper);
+            num1 = performOperation(num1, num2, operator);
             outputScreen.setText(String.valueOf(num1));
             num2 = Double.NaN;
-            oper = button.getText().toString();
+            operator = button.getText().toString();
+            operatorClicked = true;
         }
     }
 
     //click listeners to function buttons
     public void tapClear(View view) {
+
         outputScreen.setText("");
-        cs = new CalculationService();
         num1 = Double.NaN;
         num2 = Double.NaN;
-        oper = "";
+        operator = "";
+        operatorClicked = false;
     }
 
     public void tapBackSpace(View view) {
+
         String expression = outputScreen.getText().toString();
-        if (!cs.isNullOrBlank(expression)) {
+
+        if (expression.length() > 0) {
             expression = expression.substring(0, expression.length() - 1);
+            num1 = Double.parseDouble(expression);
+            operatorClicked = false;
         }
         outputScreen.setText(expression);
     }
 
     public void tapEnter(View view) {
 
-        if (!num1.isNaN() && !oper.equals("")) {
+        button = (Button) findViewById(R.id.buttonEquals);
+
+        if (operator.equals("=")) {
+            Toast.makeText(this, "You must select an operator!", Toast.LENGTH_SHORT);
+        }
+
+        if (!num1.isNaN() && !operator.equals("") && !operator.equals("=")) {
             num2 = Double.parseDouble(outputScreen.getText().toString());
-            num1 = performOperation(num1, num2, oper);
+            num1 = performOperation(num1, num2, operator);
             outputScreen.setText(String.valueOf(num1));
-            num1 = Double.NaN;
             num2 = Double.NaN;
-            oper = "";
+            operator = button.getText().toString();
+            operatorClicked = true;
         } else {
             Toast.makeText(this, "You have not entered a valid expression", Toast.LENGTH_SHORT);
         }
     }
-
-    //method to display syntax error message to users
-    private void ErrorSyntaxMessage() {
-        AlertDialog alertDialog = new AlertDialog.Builder(CalcActivity.this).create();
-        alertDialog.setTitle("Error");
-        alertDialog.setMessage("Operator Syntax Error.  Please try check your input.");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-    }
-
 
     /**
      * Checks if there is a pending operation.
@@ -278,8 +347,6 @@ public class CalcActivity extends AppCompatActivity {
             case "-":
                 result = num1 - num2;
                 break;
-            default:
-                return 0.0;
         }
         return result;
     }
