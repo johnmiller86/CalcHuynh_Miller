@@ -172,7 +172,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.buttonDiv);
 
         // Performing operation
-        hitOperator(button);
+        hitOperator(button, view);
     }
 
     /**
@@ -184,7 +184,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.buttonMult);
 
         // Performing operation
-        hitOperator(button);
+        hitOperator(button, view);
     }
 
     /**
@@ -196,7 +196,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.buttonSub);
 
         // Performing operation
-        hitOperator(button);
+        hitOperator(button, view);
     }
 
     /**
@@ -208,7 +208,7 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.buttonAdd);
 
         // Performing operation
-        hitOperator(button);
+        hitOperator(button, view);
     }
 
     /**
@@ -216,10 +216,14 @@ public class CalcActivity extends AppCompatActivity {
      */
     public void tapClear(View view) {
 
-        // Resetting
-        calculator = new Calculator();
-        outputScreen.setText("");
-        operatorClicked = false;
+        if (calculator.getNum1().isNaN() && outputScreen.getText().equals("")) {
+            Toast.makeText(this, "Nothing to clear..", Toast.LENGTH_SHORT).show();
+        } else {
+            // Resetting
+            calculator = new Calculator();
+            outputScreen.setText("");
+            operatorClicked = false;
+        }
     }
 
     /**
@@ -241,12 +245,18 @@ public class CalcActivity extends AppCompatActivity {
 
             // Empty TextView assign not a number
             else {
-                calculator.setNum1(Double.NaN);
+
+                tapClear(view);
             }
 
-            operatorClicked = false;
+            //operatorClicked = false;
+            outputScreen.setText(expression);
         }
-        outputScreen.setText(expression);
+
+        // No text to backspace
+        else {
+            Toast.makeText(this, "Notthing to backspace..", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -262,10 +272,14 @@ public class CalcActivity extends AppCompatActivity {
             Toast.makeText(this, "You must enter an operator!!", Toast.LENGTH_SHORT).show();
         }
 
-        // Calculating
+        // Catching divide by zero
         else if (outputScreen.getText().toString().equals("0") && calculator.getOperator().equals("/")) {
             Toast.makeText(this, "You cannot divide by zero!!", Toast.LENGTH_SHORT).show();
-        } else if (!calculator.getNum1().isNaN() && !calculator.getOperator().equals("")) {
+            tapClear(view);
+        }
+
+        // Calculating
+        else if (!calculator.getNum1().isNaN() && !calculator.getOperator().equals("")) {
             calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
             calculator.setNum1(calculator.performOperation());
             outputScreen.setText(String.valueOf(calculator.getNum1()));
@@ -321,7 +335,7 @@ public class CalcActivity extends AppCompatActivity {
      * Handles operator buttons.
      * @param b the operator button.
      */
-    private void hitOperator(Button b) {
+    private void hitOperator(Button b, View view) {
 
         // Prevent multiple operator clicks sequentially.
         if (!operatorClicked) {
@@ -349,6 +363,7 @@ public class CalcActivity extends AppCompatActivity {
             else {
                 if (outputScreen.getText().toString().equals("0") && calculator.getOperator().equals("/")) {
                     Toast.makeText(this, "You cannot divide by zero!!", Toast.LENGTH_SHORT).show();
+                    tapClear(view);
                 }
 
                 // Calculating
