@@ -25,7 +25,9 @@ public class CalcActivity extends AppCompatActivity {
         numberClicked = false;
     }
 
-    //listeners to pressed numbers
+    /**
+     * Handlew button zero clicks.
+     */
     public void tapZero(View view) {
 
         //declare button variable
@@ -39,6 +41,10 @@ public class CalcActivity extends AppCompatActivity {
         } else outputScreen.setText("0");
     }
 
+    /**
+     * Handles button one clicks.
+     * \
+     */
     public void tapOne(View view) {
 
         //declare button variable
@@ -48,6 +54,11 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button two clicks.
+     *
+     * @param view
+     */
     public void tapTwo(View view) {
 
         //declare button variable
@@ -57,6 +68,9 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button three clicks.
+     \     */
     public void tapThree(View view) {
 
         //declare button variable
@@ -66,6 +80,10 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button four clicks.
+     * @param view
+     */
     public void tapFour(View view) {
 
         //declare button variable
@@ -75,6 +93,9 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button five clicks.
+     */
     public void tapFive(View view) {
 
         //declare button variable
@@ -84,6 +105,9 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button six clicks.
+     */
     public void tapSix(View view) {
 
         //declare button variable
@@ -93,6 +117,9 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button seven clicks.
+     */
     public void tapSeven(View view) {
 
         //declare button variable
@@ -102,6 +129,9 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button eight clicks.
+     */
     public void tapEight(View view) {
 
         //declare button variable
@@ -111,6 +141,9 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
+    /**
+     * Handles button nine clicks.
+     */
     public void tapNine(View view) {
 
         //declare button variable
@@ -120,7 +153,9 @@ public class CalcActivity extends AppCompatActivity {
         hitNumber(button);
     }
 
-    //listener to pressed operators
+    /**
+     * Handles divide button clicks.
+     */
     public void tapDivide(View view) {
 
         // Assigning button
@@ -130,6 +165,9 @@ public class CalcActivity extends AppCompatActivity {
         hitOperator(button);
     }
 
+    /**
+     * Handles multiply button clicks.
+     */
     public void tapMultiply(View view) {
 
         // Assigning button
@@ -139,6 +177,9 @@ public class CalcActivity extends AppCompatActivity {
         hitOperator(button);
     }
 
+    /**
+     * Handles subtract button clicks.
+     */
     public void tapSubtract(View view) {
 
         // Assigning button
@@ -148,6 +189,9 @@ public class CalcActivity extends AppCompatActivity {
         hitOperator(button);
     }
 
+    /**
+     * Handles add button clicks.
+     */
     public void tapAdd(View view) {
 
         // Assigning button
@@ -157,7 +201,9 @@ public class CalcActivity extends AppCompatActivity {
         hitOperator(button);
     }
 
-    //click listeners to function buttons
+    /**
+     * Handles clear  button clicks.
+     */
     public void tapClear(View view) {
 
         calculator = new Calculator();
@@ -165,10 +211,12 @@ public class CalcActivity extends AppCompatActivity {
         operatorClicked = false;
     }
 
+    /**
+     * Handles backspace button clicks.
+     */
     public void tapBackSpace(View view) {
 
         String expression = outputScreen.getText().toString();
-
         if (expression.length() > 0) {
             expression = expression.substring(0, expression.length() - 1);
 
@@ -180,6 +228,10 @@ public class CalcActivity extends AppCompatActivity {
         outputScreen.setText(expression);
     }
 
+    /**
+     * Handles enter button clicks.
+     * @param view
+     */
     public void tapEnter(View view) {
 
         button = (Button) findViewById(R.id.buttonEquals);
@@ -194,7 +246,6 @@ public class CalcActivity extends AppCompatActivity {
             outputScreen.setText(String.valueOf(calculator.getNum1()));
             calculator.setNum2(Double.NaN);
             calculator.setOperator(button.getText().toString());
-            operatorClicked = true;
         } else {
             Toast.makeText(this, "You have not entered a valid expression", Toast.LENGTH_SHORT);
         }
@@ -221,17 +272,16 @@ public class CalcActivity extends AppCompatActivity {
      */
     private void hitNumber(Button b) {
 
-        operatorClicked = false;
         // Build new number
         if (operatorClicked) {
             outputScreen.setText(b.getText().toString());
-            operatorClicked = false;
         }
 
         // Add digit
         else {
             outputScreen.setText(outputScreen.getText() + b.getText().toString());
         }
+        operatorClicked = false;
     }
 
     /**
@@ -240,31 +290,34 @@ public class CalcActivity extends AppCompatActivity {
      */
     private void hitOperator(Button b) {
 
-        operatorClicked = true;
+        if (!operatorClicked) {
+            // If first number set number and operator
+            if (calculator.getNum1().isNaN()) {
 
-        // If first number set number and operator
-        if (calculator.getNum1().isNaN()) {
-
-            try {
-                calculator.setOperator(b.getText().toString());
-                calculator.setNum1(Double.parseDouble(outputScreen.getText().toString()));
-            } catch (NumberFormatException e) {
-                Toast.makeText(this, "You must enter a number before choosing an operator!", Toast.LENGTH_SHORT);
+                try {
+                    calculator.setOperator(b.getText().toString());
+                    calculator.setNum1(Double.parseDouble(outputScreen.getText().toString()));
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "You must enter a number before choosing an operator!", Toast.LENGTH_SHORT);
+                }
             }
-        }
 
-        // If last operator was equals change operator, wait for second number
-        else if (calculator.getOperator().equals("=")) {
-            calculator.setOperator(b.getText().toString());
-        }
+            // If last operator was equals change operator, wait for second number
+            else if (calculator.getOperator().equals("=")) {
+                calculator.setOperator(b.getText().toString());
+            }
 
-        // Calculate and store as num1 for further operations
-        else {
-            calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
-            calculator.setNum1(calculator.performOperation());
-            outputScreen.setText(String.valueOf(calculator.getNum1()));
-            calculator.setNum2(Double.NaN);
-            calculator.setOperator(b.getText().toString());
+            // Calculate and store as num1 for further operations
+            else {
+                calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
+                calculator.setNum1(calculator.performOperation());
+                outputScreen.setText(String.valueOf(calculator.getNum1()));
+                calculator.setNum2(Double.NaN);
+                calculator.setOperator(b.getText().toString());
+            }
+            operatorClicked = true;
+        } else {
+            Toast.makeText(this, "Number expected...", Toast.LENGTH_SHORT).show();
         }
     }
 }
