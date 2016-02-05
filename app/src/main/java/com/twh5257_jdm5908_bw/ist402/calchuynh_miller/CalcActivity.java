@@ -1,5 +1,6 @@
 package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Class to model a calculator.
+ *
+ * @version 1.0.1
+ * @authors John D. Miller, Tisa Huynh
+ * @since 02/04/2016
+ */
 public class CalcActivity extends AppCompatActivity {
 
     // Instance variables
@@ -14,6 +22,7 @@ public class CalcActivity extends AppCompatActivity {
     private Button button;
     private boolean operatorClicked, numberClicked;
     private Calculator calculator;
+    static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +32,7 @@ public class CalcActivity extends AppCompatActivity {
         calculator = new Calculator();
         operatorClicked = false;
         numberClicked = false;
+        context = this.getApplicationContext();
     }
 
     /**
@@ -206,6 +216,7 @@ public class CalcActivity extends AppCompatActivity {
      */
     public void tapClear(View view) {
 
+        // Resetting
         calculator = new Calculator();
         outputScreen.setText("");
         operatorClicked = false;
@@ -216,13 +227,23 @@ public class CalcActivity extends AppCompatActivity {
      */
     public void tapBackSpace(View view) {
 
+        // Getting text
         String expression = outputScreen.getText().toString();
+
+        // Remove a character
         if (expression.length() > 0) {
             expression = expression.substring(0, expression.length() - 1);
 
+            // Assign new value
             if (expression.length() != 0) {
                 calculator.setNum1(Double.parseDouble(expression));
             }
+
+            // Empty TextView assign not a number
+            else {
+                calculator.setNum1(Double.NaN);
+            }
+
             operatorClicked = false;
         }
         outputScreen.setText(expression);
@@ -230,24 +251,31 @@ public class CalcActivity extends AppCompatActivity {
 
     /**
      * Handles enter button clicks.
-     * @param view
      */
     public void tapEnter(View view) {
 
+        // Assigning button
         button = (Button) findViewById(R.id.buttonEquals);
 
+        // Awaiting operator for result
         if (calculator.getOperator().equals("=")) {
-            Toast.makeText(this, "You must select an operator!", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "You must enter an operator!!", Toast.LENGTH_SHORT).show();
         }
 
-        if (!calculator.getNum1().isNaN() && !calculator.getOperator().equals("") && !calculator.getOperator().equals("=")) {
+        // Calculating
+        else if (outputScreen.getText().toString().equals("0") && calculator.getOperator().equals("/")) {
+            Toast.makeText(this, "You cannot divide by zero!!", Toast.LENGTH_SHORT).show();
+        } else if (!calculator.getNum1().isNaN() && !calculator.getOperator().equals("")) {
             calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
             calculator.setNum1(calculator.performOperation());
             outputScreen.setText(String.valueOf(calculator.getNum1()));
             calculator.setNum2(Double.NaN);
             calculator.setOperator(button.getText().toString());
-        } else {
-            Toast.makeText(this, "You have not entered a valid expression", Toast.LENGTH_SHORT);
+        }
+
+        // Awaiting number and operator
+        else {
+            Toast.makeText(this, "You must enter a number and an operator!!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -272,8 +300,13 @@ public class CalcActivity extends AppCompatActivity {
      */
     private void hitNumber(Button b) {
 
+        // Preventing number first continuing with result
+        if (calculator.getOperator().equals("=")) {
+            Toast.makeText(this, "Enter an operator or Clear to start over..", Toast.LENGTH_SHORT).show();
+        }
+
         // Build new number
-        if (operatorClicked) {
+        else if (operatorClicked) {
             outputScreen.setText(b.getText().toString());
         }
 
@@ -290,15 +323,20 @@ public class CalcActivity extends AppCompatActivity {
      */
     private void hitOperator(Button b) {
 
+        // Prevent multiple operator clicks sequentially.
         if (!operatorClicked) {
+
             // If first number set number and operator
             if (calculator.getNum1().isNaN()) {
 
                 try {
                     calculator.setOperator(b.getText().toString());
                     calculator.setNum1(Double.parseDouble(outputScreen.getText().toString()));
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, "You must enter a number before choosing an operator!", Toast.LENGTH_SHORT);
+                }
+
+                // Number backspaced, enter a number
+                catch (NumberFormatException e) {
+                    Toast.makeText(this, "Enter a number!!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -307,17 +345,27 @@ public class CalcActivity extends AppCompatActivity {
                 calculator.setOperator(b.getText().toString());
             }
 
-            // Calculate and store as num1 for further operations
+            // Catching divide by zero
             else {
-                calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
-                calculator.setNum1(calculator.performOperation());
-                outputScreen.setText(String.valueOf(calculator.getNum1()));
-                calculator.setNum2(Double.NaN);
-                calculator.setOperator(b.getText().toString());
+                if (outputScreen.getText().toString().equals("0") && calculator.getOperator().equals("/")) {
+                    Toast.makeText(this, "You cannot divide by zero!!", Toast.LENGTH_SHORT).show();
+                }
+
+                // Calculating
+                else {
+                    calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
+                    calculator.setNum1(calculator.performOperation());
+                    outputScreen.setText(String.valueOf(calculator.getNum1()));
+                    calculator.setNum2(Double.NaN);
+                    calculator.setOperator(b.getText().toString());
+                }
             }
             operatorClicked = true;
-        } else {
-            Toast.makeText(this, "Number expected...", Toast.LENGTH_SHORT).show();
+        }
+
+        // Sequential operators
+        else {
+            Toast.makeText(this, "Enter a number!!", Toast.LENGTH_SHORT).show();
         }
     }
 }
