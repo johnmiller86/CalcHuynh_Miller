@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CalcActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".CalcActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

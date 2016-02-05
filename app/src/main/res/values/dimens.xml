@@ -6,4 +6,5 @@
 
     <!-- Custom button dimensions-->
     <dimen name="button_width">60dp</dimen>
+    <dimen name="landscape_button_width">40dp</dimen>
 </resources>
