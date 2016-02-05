@@ -1,6 +1,5 @@
 package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,7 +21,6 @@ public class CalcActivity extends AppCompatActivity {
     private Button button;
     private boolean operatorClicked, numberClicked;
     private Calculator calculator;
-    static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,6 @@ public class CalcActivity extends AppCompatActivity {
         calculator = new Calculator();
         operatorClicked = false;
         numberClicked = false;
-        context = this.getApplicationContext();
     }
 
     /**
@@ -293,9 +290,14 @@ public class CalcActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handles decimal button clicks
+     *
+     * @param view
+     */
     public void tapDecimal(View view) {
 
-        //declare button variable
+        //Assigning button and getting text
         button = (Button) findViewById(R.id.buttonDec);
         String existingString = outputScreen.getText().toString();
 
@@ -303,7 +305,10 @@ public class CalcActivity extends AppCompatActivity {
             outputScreen.setText(".");
         } else if (!operatorClicked && !existingString.contains(".")) {
             outputScreen.setText(existingString + button.getText().toString());
-        } else {
+        }
+
+        // One decimal per number
+        else {
             Toast.makeText(this, "Numbers may not contain more than one decimal!!", Toast.LENGTH_SHORT).show();
         }
     }
