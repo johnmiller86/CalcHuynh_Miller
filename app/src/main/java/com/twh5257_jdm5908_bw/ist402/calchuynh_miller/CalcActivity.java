@@ -19,7 +19,7 @@ public class CalcActivity extends AppCompatActivity {
     // Instance variables
     private TextView outputScreen;
     private Button button;
-    private boolean operatorClicked, numberClicked;
+    private boolean operatorClicked;
     private Calculator calculator;
 
     @Override
@@ -29,7 +29,6 @@ public class CalcActivity extends AppCompatActivity {
         outputScreen = (TextView) findViewById(R.id.textView1);
         calculator = new Calculator();
         operatorClicked = false;
-        numberClicked = false;
     }
 
     /**
