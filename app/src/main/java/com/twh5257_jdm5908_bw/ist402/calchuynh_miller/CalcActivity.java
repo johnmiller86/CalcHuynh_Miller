@@ -11,7 +11,7 @@ import android.widget.Toast;
  * Class to model a calculator.
  *
  * @version 1.0.1
- * @authors John D. Miller, Tisa Huynh
+ * @author John D. Miller, Tisa Huynh
  * @since 02/04/2016
  */
 public class CalcActivity extends AppCompatActivity {
@@ -49,7 +49,7 @@ public class CalcActivity extends AppCompatActivity {
 
     /**
      * Handles button one clicks.
-     * \
+     *
      */
     public void tapOne(View view) {
 
@@ -63,7 +63,7 @@ public class CalcActivity extends AppCompatActivity {
     /**
      * Handles button two clicks.
      *
-     * @param view
+     * @param view the view.
      */
     public void tapTwo(View view) {
 
@@ -88,7 +88,8 @@ public class CalcActivity extends AppCompatActivity {
 
     /**
      * Handles button four clicks.
-     * @param view
+     *
+     * @param view the view.
      */
     public void tapFour(View view) {
 
@@ -292,7 +293,7 @@ public class CalcActivity extends AppCompatActivity {
     /**
      * Handles decimal button clicks
      *
-     * @param view
+     * @param view the view.
      */
     public void tapDecimal(View view) {
 

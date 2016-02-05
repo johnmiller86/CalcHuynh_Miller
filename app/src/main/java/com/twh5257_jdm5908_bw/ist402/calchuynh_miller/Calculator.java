@@ -7,7 +7,7 @@ package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
  * @version 1.0.1
  * @since 02/04/2016
  */
-public class Calculator {
+class Calculator {
 
     // Instance variables
     private Double num1, num2;
