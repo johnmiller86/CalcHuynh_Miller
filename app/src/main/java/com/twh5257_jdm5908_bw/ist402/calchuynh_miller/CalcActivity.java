@@ -301,10 +301,14 @@ public class CalcActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.buttonDec);
         String existingString = outputScreen.getText().toString();
 
-        if (operatorClicked && !existingString.contains(".")) {
-            outputScreen.setText(".");
-        } else if (!operatorClicked && !existingString.contains(".")) {
+        // Allowing decimal first calculations
+        if (!existingString.contains(".")) {
             outputScreen.setText(existingString + button.getText().toString());
+        }
+
+        // Adding to existing string
+        else if (operatorClicked) {
+            outputScreen.setText(0 + button.getText().toString());
         }
 
         // One decimal per number
