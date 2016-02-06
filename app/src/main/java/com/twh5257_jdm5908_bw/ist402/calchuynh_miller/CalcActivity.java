@@ -235,17 +235,6 @@ public class CalcActivity extends AppCompatActivity {
         if (expression.length() > 0) {
             expression = expression.substring(0, expression.length() - 1);
 
-            // Assign new value
-            if (expression.length() != 0) {
-                calculator.setNum1(Double.parseDouble(expression));
-            }
-
-            // Empty TextView assign not a number
-            else {
-
-                tapClear(view);
-            }
-
             //operatorClicked = false;
             outputScreen.setText(expression);
         }
