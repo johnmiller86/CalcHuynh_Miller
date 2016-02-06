@@ -307,13 +307,12 @@ public class CalcActivity extends AppCompatActivity {
         }
 
         // Allowing decimal first computations
-        else if (operatorClicked) {
+        if (operatorClicked) {
             outputScreen.setText(0 + button.getText().toString());
-            operatorClicked = false;
         }
 
         // One decimal per number
-        else {
+        if (existingString.contains(".") && !operatorClicked) {
             Toast.makeText(this, "Numbers may not contain more than one decimal!!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -327,6 +326,11 @@ public class CalcActivity extends AppCompatActivity {
         // Preventing number first continuing with result
         if (calculator.getOperator().equals("=")) {
             Toast.makeText(this, "Enter an operator or Clear to start over..", Toast.LENGTH_SHORT).show();
+        }
+
+        // Adding to decimal first numbers
+        if (outputScreen.getText().toString().equals("0.")) {
+            outputScreen.setText(outputScreen.getText().toString() + b.getText().toString());
         }
 
         // Build new number
@@ -385,12 +389,12 @@ public class CalcActivity extends AppCompatActivity {
                     calculator.setOperator(b.getText().toString());
                 }
             }
-            operatorClicked = true;
         }
 
         // Sequential operators
         else {
             Toast.makeText(this, "Enter a number!!", Toast.LENGTH_SHORT).show();
         }
+        operatorClicked = true;
     }
 }
