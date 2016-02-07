@@ -2,6 +2,7 @@ package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,6 +66,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button0);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Only one leading zero allowed
         if (!outputScreen.getText().equals("0")) {
@@ -82,6 +84,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button1);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -96,6 +99,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button2);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling Click
         hitNumber(button);
@@ -108,6 +112,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button3);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -122,6 +127,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button4);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -134,6 +140,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button5);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -146,6 +153,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button6);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -158,6 +166,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button7);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -170,6 +179,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button8);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -182,6 +192,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //declare button variable
         button = (Button) findViewById(R.id.button9);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Handling click
         hitNumber(button);
@@ -194,6 +205,7 @@ public class CalcActivity extends AppCompatActivity {
 
         // Assigning button
         button = (Button) findViewById(R.id.buttonDiv);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Performing operation
         hitOperator(button, view);
@@ -206,6 +218,7 @@ public class CalcActivity extends AppCompatActivity {
 
         // Assigning button
         button = (Button) findViewById(R.id.buttonMult);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Performing operation
         hitOperator(button, view);
@@ -218,6 +231,7 @@ public class CalcActivity extends AppCompatActivity {
 
         // Assigning button
         button = (Button) findViewById(R.id.buttonSub);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Performing operation
         hitOperator(button, view);
@@ -230,6 +244,7 @@ public class CalcActivity extends AppCompatActivity {
 
         // Assigning button
         button = (Button) findViewById(R.id.buttonAdd);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Performing operation
         hitOperator(button, view);
@@ -239,6 +254,10 @@ public class CalcActivity extends AppCompatActivity {
      * Handles clear  button clicks.
      */
     public void tapClear(View view) {
+
+        // Assigning button
+        button = (Button) findViewById(R.id.buttonClear);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         if (calculator.getNum1().isNaN() && outputScreen.getText().equals("")) {
             Toast.makeText(this, "Nothing to clear..", Toast.LENGTH_SHORT).show();
@@ -254,6 +273,10 @@ public class CalcActivity extends AppCompatActivity {
      * Handles backspace button clicks.
      */
     public void tapBackSpace(View view) {
+
+        // Assigning button
+        button = (Button) findViewById(R.id.buttonBack);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Getting text
         String expression = outputScreen.getText().toString();
@@ -279,6 +302,7 @@ public class CalcActivity extends AppCompatActivity {
 
         // Assigning button
         button = (Button) findViewById(R.id.buttonEquals);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
 
         // Awaiting operator for result
         if (calculator.getOperator().equals("=")) {
@@ -315,6 +339,7 @@ public class CalcActivity extends AppCompatActivity {
 
         //Assigning button and getting text
         button = (Button) findViewById(R.id.buttonDec);
+        button.playSoundEffect(SoundEffectConstants.CLICK);
         String existingString = outputScreen.getText().toString();
 
         // Adding decimal
@@ -342,6 +367,7 @@ public class CalcActivity extends AppCompatActivity {
         // Preventing number first continuing with result
         if (calculator.getOperator().equals("=")) {
             Toast.makeText(this, "Enter an operator or Clear to start over..", Toast.LENGTH_SHORT).show();
+            operatorClicked = false;
         }
 
         // Adding to decimal first numbers

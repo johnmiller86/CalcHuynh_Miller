@@ -1,5 +1,8 @@
 package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Class to model a calculator.
  *
@@ -104,6 +107,8 @@ class Calculator {
                 result = num1 - num2;
                 break;
         }
+        BigDecimal decimal = new BigDecimal(result);
+        result = decimal.setScale(10, RoundingMode.HALF_EVEN).doubleValue();
         return result;
     }
 }
