@@ -10,18 +10,18 @@ package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 class Calculator {
 
     // Instance variables
-    private Float num1, num2;
+    private Double num1, num2;
     private String operator;
 
     // Constructor
     public Calculator() {
-        num1 = Float.NaN;
-        num2 = Float.NaN;
+        num1 = Double.NaN;
+        num2 = Double.NaN;
         operator = "";
     }
 
     // Arguments Constructor
-    public Calculator(Float num1, Float num2, String operator) {
+    public Calculator(Double num1, Double num2, String operator) {
         this.num1 = num1;
         this.num2 = num2;
         this.operator = operator;
@@ -32,7 +32,7 @@ class Calculator {
      *
      * @return the first number.
      */
-    public Float getNum1() {
+    public Double getNum1() {
         return num1;
     }
 
@@ -41,7 +41,7 @@ class Calculator {
      *
      * @param num1 the first number.
      */
-    public void setNum1(Float num1) {
+    public void setNum1(Double num1) {
         this.num1 = num1;
     }
 
@@ -50,7 +50,7 @@ class Calculator {
      *
      * @return the second number.
      */
-    public Float getNum2() {
+    public Double getNum2() {
         return num2;
     }
 
@@ -59,7 +59,7 @@ class Calculator {
      *
      * @param num2 the second number.
      */
-    public void setNum2(Float num2) {
+    public void setNum2(Double num2) {
         this.num2 = num2;
     }
 
@@ -86,9 +86,9 @@ class Calculator {
      *
      * @return the result.
      */
-    public Float performOperation() {
+    public Double performOperation() {
 
-        Float result = Float.NaN;
+        Double result = Double.NaN;
 
         switch (operator) {
             case "/":

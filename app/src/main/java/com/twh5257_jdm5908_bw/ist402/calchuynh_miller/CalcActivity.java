@@ -38,7 +38,7 @@ public class CalcActivity extends AppCompatActivity {
         // Restoring savedInstanceState
         if (savedInstanceState != null) {
             outputScreen.setText(savedInstanceState.getString(TEXTVIEW));
-            calculator = new Calculator(savedInstanceState.getFloat(NUM_1), savedInstanceState.getFloat(NUM_2), savedInstanceState.getString(OPERATOR));
+            calculator = new Calculator(savedInstanceState.getDouble(NUM_1), savedInstanceState.getDouble(NUM_2), savedInstanceState.getString(OPERATOR));
             operatorClicked = savedInstanceState.getBoolean(OPERATOR_CLICKED);
         }
 
@@ -52,8 +52,8 @@ public class CalcActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString(TEXTVIEW, outputScreen.getText().toString());
-        savedInstanceState.putFloat(NUM_1, calculator.getNum1());
-        savedInstanceState.putFloat(NUM_2, calculator.getNum2());
+        savedInstanceState.putDouble(NUM_1, calculator.getNum1());
+        savedInstanceState.putDouble(NUM_2, calculator.getNum2());
         savedInstanceState.putString(OPERATOR, calculator.getOperator());
         savedInstanceState.putBoolean(OPERATOR_CLICKED, operatorClicked);
         super.onSaveInstanceState(savedInstanceState);
@@ -293,10 +293,10 @@ public class CalcActivity extends AppCompatActivity {
 
         // Calculating
         else if (!calculator.getNum1().isNaN() && !calculator.getOperator().equals("")) {
-            calculator.setNum2(Float.parseFloat(outputScreen.getText().toString()));
+            calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
             calculator.setNum1(calculator.performOperation());
             outputScreen.setText(String.valueOf(calculator.getNum1()));
-            calculator.setNum2(Float.NaN);
+            calculator.setNum2(Double.NaN);
             calculator.setOperator(button.getText().toString());
         }
 
@@ -375,7 +375,7 @@ public class CalcActivity extends AppCompatActivity {
 
                 try {
                     calculator.setOperator(b.getText().toString());
-                    calculator.setNum1(Float.parseFloat(outputScreen.getText().toString()));
+                    calculator.setNum1(Double.parseDouble(outputScreen.getText().toString()));
                 }
 
                 // Number backspaced, enter a number
@@ -398,10 +398,10 @@ public class CalcActivity extends AppCompatActivity {
 
                 // Calculating
                 else {
-                    calculator.setNum2(Float.parseFloat(outputScreen.getText().toString()));
+                    calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
                     calculator.setNum1(calculator.performOperation());
                     outputScreen.setText(String.valueOf(calculator.getNum1()));
-                    calculator.setNum2(Float.NaN);
+                    calculator.setNum2(Double.NaN);
                     calculator.setOperator(b.getText().toString());
                 }
             }
