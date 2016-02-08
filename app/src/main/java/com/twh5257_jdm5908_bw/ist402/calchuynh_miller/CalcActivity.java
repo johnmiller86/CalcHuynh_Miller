@@ -318,16 +318,16 @@ public class CalcActivity extends AppCompatActivity {
         }
 
         // Catching divide by zero
-        else if (outputScreen.getText().toString().equals("0") && calculator.getOperator().equals("/")) {
-            Toast.makeText(this, "You cannot divide by zero!!", Toast.LENGTH_SHORT).show();
+        else if (Double.parseDouble(outputScreen.getText().toString()) == 0 && calculator.getOperator().equals("/")) {
+            Toast.makeText(this, "You cannot divide by zero!! Please try again..", Toast.LENGTH_SHORT).show();
             tapClear(view);
         }
 
         // Calculating
         else if (calculator.getNum1() != null && !calculator.getOperator().equals("")) {
             calculator.setNum2(new BigDecimal(outputScreen.getText().toString()));
-            calculator.setNum1(calculator.performOperation());
-            outputScreen.setText(String.valueOf(calculator.getNum1()));
+            calculator.performOperation();
+            outputScreen.setText(String.valueOf(calculator.getNum1().stripTrailingZeros().toPlainString()));
             calculator.setNum2(null);
             calculator.setOperator(button.getText().toString());
         }
@@ -431,8 +431,8 @@ public class CalcActivity extends AppCompatActivity {
                 // Calculating
                 else {
                     calculator.setNum2(new BigDecimal((outputScreen.getText().toString())));
-                    calculator.setNum1(calculator.performOperation());
-                    outputScreen.setText(String.valueOf(calculator.getNum1()));
+                    calculator.performOperation();
+                    outputScreen.setText(String.valueOf(calculator.getNum1().stripTrailingZeros().toPlainString()));
                     calculator.setNum2(null);
                     calculator.setOperator(b.getText().toString());
                 }

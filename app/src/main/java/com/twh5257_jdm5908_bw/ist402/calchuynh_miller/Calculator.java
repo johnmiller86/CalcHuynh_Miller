@@ -1,6 +1,7 @@
 package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Class to model a calculator.
@@ -84,17 +85,15 @@ class Calculator {
     }
 
     /**
-     * Checks if there is a pending operation.
-     *
-     * @return the result.
+     * Performs all calculations.
      */
-    public BigDecimal performOperation() {
+    public void performOperation() {
 
         BigDecimal result = null;
 
         switch (operator) {
             case "/":
-                result = num1.divide(num2);
+                result = num1.divide(num2, RoundingMode.HALF_UP);
                 break;
             case "*":
                 result = num1.multiply(num2);
@@ -106,7 +105,6 @@ class Calculator {
                 result = num1.subtract(num2);
                 break;
         }
-        //result.setScale(10, RoundingMode.HALF_EVEN);
-        return result;
+        num1 = result;
     }
 }
