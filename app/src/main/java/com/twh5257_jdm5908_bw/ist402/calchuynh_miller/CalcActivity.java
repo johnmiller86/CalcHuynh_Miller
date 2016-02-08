@@ -299,7 +299,7 @@ public class CalcActivity extends AppCompatActivity {
 
         // No text to backspace
         else {
-            Toast.makeText(this, "Notthing to backspace..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nothing to backspace..", Toast.LENGTH_SHORT).show();
         }
     }
 
