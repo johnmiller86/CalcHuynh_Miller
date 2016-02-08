@@ -1,7 +1,6 @@
 package com.twh5257_jdm5908_bw.ist402.calchuynh_miller;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * Class to model a calculator.
@@ -13,18 +12,18 @@ import java.math.RoundingMode;
 class Calculator {
 
     // Instance variables
-    private Double num1, num2;
+    private BigDecimal num1, num2;
     private String operator;
 
     // Constructor
     public Calculator() {
-        num1 = Double.NaN;
-        num2 = Double.NaN;
+        num1 = null;
+        num2 = null;
         operator = "";
     }
 
     // Arguments Constructor
-    public Calculator(Double num1, Double num2, String operator) {
+    public Calculator(BigDecimal num1, BigDecimal num2, String operator) {
         this.num1 = num1;
         this.num2 = num2;
         this.operator = operator;
@@ -35,7 +34,7 @@ class Calculator {
      *
      * @return the first number.
      */
-    public Double getNum1() {
+    public BigDecimal getNum1() {
         return num1;
     }
 
@@ -44,7 +43,7 @@ class Calculator {
      *
      * @param num1 the first number.
      */
-    public void setNum1(Double num1) {
+    public void setNum1(BigDecimal num1) {
         this.num1 = num1;
     }
 
@@ -53,7 +52,7 @@ class Calculator {
      *
      * @return the second number.
      */
-    public Double getNum2() {
+    public BigDecimal getNum2() {
         return num2;
     }
 
@@ -62,7 +61,7 @@ class Calculator {
      *
      * @param num2 the second number.
      */
-    public void setNum2(Double num2) {
+    public void setNum2(BigDecimal num2) {
         this.num2 = num2;
     }
 
@@ -89,26 +88,25 @@ class Calculator {
      *
      * @return the result.
      */
-    public Double performOperation() {
+    public BigDecimal performOperation() {
 
-        Double result = Double.NaN;
+        BigDecimal result = null;
 
         switch (operator) {
             case "/":
-                result = num1 / num2;
+                result = num1.divide(num2);
                 break;
             case "*":
-                result = num1 * num2;
+                result = num1.multiply(num2);
                 break;
             case "+":
-                result = num1 + num2;
+                result = num1.add(num2);
                 break;
             case "-":
-                result = num1 - num2;
+                result = num1.subtract(num2);
                 break;
         }
-        BigDecimal decimal = new BigDecimal(result);
-        result = decimal.setScale(10, RoundingMode.HALF_EVEN).doubleValue();
+        //result.setScale(10, RoundingMode.HALF_EVEN);
         return result;
     }
 }
