@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 /**
  * Class to model a calculator.
- *
+ * Hey i changed this from another pc
  * @version 1.0.1
  * @author John D. Miller, Tisa Huynh
  * @since 02/04/2016
