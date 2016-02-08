@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+
 /**
  * Class to model a calculator.
  *
@@ -303,7 +305,7 @@ public class CalcActivity extends AppCompatActivity {
         else if (!calculator.getNum1().isNaN() && !calculator.getOperator().equals("")) {
             calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
             calculator.setNum1(calculator.performOperation());
-            outputScreen.setText(String.valueOf(calculator.getNum1()));
+            outputScreen.setText(String.valueOf(BigDecimal.valueOf(calculator.getNum1())));
             calculator.setNum2(Double.NaN);
             calculator.setOperator(button.getText().toString());
         }
@@ -353,7 +355,7 @@ public class CalcActivity extends AppCompatActivity {
         }
 
         // Adding to decimal first numbers
-        if (outputScreen.getText().toString().equals("0.")) {
+        else if (outputScreen.getText().toString().equals("0.")) {
             outputScreen.setText(outputScreen.getText().toString() + b.getText().toString());
         }
 
@@ -408,7 +410,7 @@ public class CalcActivity extends AppCompatActivity {
                 else {
                     calculator.setNum2(Double.parseDouble(outputScreen.getText().toString()));
                     calculator.setNum1(calculator.performOperation());
-                    outputScreen.setText(String.valueOf(calculator.getNum1()));
+                    outputScreen.setText(String.valueOf(BigDecimal.valueOf(calculator.getNum1())));
                     calculator.setNum2(Double.NaN);
                     calculator.setOperator(b.getText().toString());
                 }
